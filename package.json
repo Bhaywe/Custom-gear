@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.12.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@types/node": "^16.11.45",
+    "aguid": "^2.0.0",
     "axios": "^0.21.1",
     "concurrently": "^6.2.0",
     "json-server": "^0.16.3",
@@ -14,12 +15,13 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "typescript": "^4.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "json-server": "json-server --watch src/Database/db.json --host 127.0.0.1 --port 3003",
-    "dev": "concurrently \"npm start\" \"npm run json-server\"",
+    "custom-gear": "concurrently \"npm start\" \"npm run json-server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -41,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3"
   }
 }

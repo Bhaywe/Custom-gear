@@ -1,39 +1,12 @@
 {
-  "user": [
+  "client": [
     {
-      "name": "Bianka",
-      "username": "raj",
-      "email": "aryan@gmail.com",
-      "phone": "1234567890",
-      "id": 1
-    },
-    {
-      "name": "akash",
-      "username": "akashsingh",
-      "email": "akash@gmail.com",
-      "phone": "98786756564",
-      "id": 2
-    },
-    {
-      "name": "rakesh",
-      "username": "rakesh",
-      "email": "rakesh@gmail.com",
-      "phone": "9579579575",
-      "id": 4
-    },
-    {
-      "name": "vikas",
-      "username": "vikas123",
-      "email": "vikas@gmail.com",
-      "phone": "444444444444",
-      "id": 5
-    },
-    {
-      "name": "Bianka Halle",
-      "username": "",
-      "email": "biankahale@gmail.com",
-      "phone": "4189281598",
-      "id": 6
+      "Prenom": "Bianka",
+      "Nom": "Halledddddd",
+      "Courriel": "biankahale@gmail.com",
+      "Telephone": "4189281598",
+      "IdClient": "fc85ebfd-8858-4fe1-bd54-68f65864dcb2",
+      "id": "fc85ebfd-8858-4fe1-bd54-68f65864dcb2"
     }
   ]
 }
