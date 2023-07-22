@@ -19,7 +19,7 @@ export const postClient = async (user: any) => {
 }
 
 export const putClient = async (id: string, user: Client) => {
-    return await axios.put(`${urlClient}/${id}`,user);
+    return await axios.put(`${urlClient}/${id}`, user);
 }
 
 export const deleteClient = async (id: string) => {

@@ -1,9 +1,8 @@
 
 import Client from '../models/client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ModifierVoiture from './ModifierVoiture';
 import Voiture from '../models/voiture';
-import { getClients } from '../service/api';
 
 interface IListeVoituresProps{
     supprimerDetailsVoiture: Function

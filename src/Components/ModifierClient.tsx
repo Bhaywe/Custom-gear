@@ -60,19 +60,38 @@ function ModifierClient() {
         return voiture
     }
 
+    // const modifierDetailsVoiture = async () =>{
+    //     var voituresAJour:Array<Voiture> = miseAJourVoiture(client)
+    //     var clientModifier: Client = {...client!}
+    //     clientModifier.Voitures = voituresAJour
+
+    //     setClient(clientModifier);
+    //     await putClient(id, clientModifier!);
+    //     fermerFormulaireVoiture()
+    // }
+
+    // const miseAJourVoiture = (client: Client | undefined) =>{
+    //     var voitureUpdate:Voiture = {...voiture!}
+    //     var client: Client | undefined = {...client!}
+    //     var voitureIndex:number = client?.Voitures!.findIndex(x => x.IdVoiture === voitureUpdate.IdVoiture);
+    //     var copyListeVoitures: Array<Voiture> = {...client?.Voitures!}
+    //     copyListeVoitures[voitureIndex] = voitureUpdate
+    //     return copyListeVoitures
+    // }
+
     const modifierDetailsVoiture = async () =>{
-        var voituresAJour:Array<Voiture> = miseAJourVoiture(client)
         var clientModifier: Client = {...client!}
+        var voituresAJour:Array<Voiture> = miseAJourVoiture(clientModifier)
         clientModifier.Voitures = voituresAJour
 
-        setClient(clientModifier);
-        await putClient(id, clientModifier!);
+        setClient({...client!, Voitures: voituresAJour});
+        await putClient(id, client!);
         fermerFormulaireVoiture()
     }
 
     const miseAJourVoiture = (client: Client | undefined) =>{
-        var voitureUpdate:Voiture = {...voiture!}
-        var client: Client | undefined = {...client!}
+        var voitureUpdate:Voiture = voiture!
+        var client: Client | undefined = client!
         var voitureIndex:number = client?.Voitures!.findIndex(x => x.IdVoiture === voitureUpdate.IdVoiture);
         var copyListeVoitures: Array<Voiture> = {...client?.Voitures!}
         copyListeVoitures[voitureIndex] = voitureUpdate
