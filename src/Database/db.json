@@ -1,12 +1,55 @@
 {
-  "client": [
+  "clients": [
     {
       "Prenom": "Bianka",
-      "Nom": "Halledddddd",
+      "Nom": "Halle",
       "Courriel": "biankahale@gmail.com",
       "Telephone": "4189281598",
-      "IdClient": "fc85ebfd-8858-4fe1-bd54-68f65864dcb2",
-      "id": "fc85ebfd-8858-4fe1-bd54-68f65864dcb2"
+      "Voitures": [
+        {
+          "Marque": "Toyora",
+          "Modele": "Yaris",
+          "Annee": "2008",
+          "Historique": "Bon états",
+          "Reparations": "Meuf",
+          "DateReparation": "2023-07-12",
+          "Commentaires": "vas a scrap",
+          "id": "cc9f402f-7fc4-440d-a394-73e034d3f9bf",
+          "IdVoiture": "cc9f402f-7fc4-440d-a394-73e034d3f9bf",
+          "IdClient": "4388e7a1-5c8e-4761-a2ed-0f647c3a62f5"
+        },
+        {
+          "Marque": "Toyora",
+          "Modele": "Yaris",
+          "Annee": "2008",
+          "Historique": "Bon états",
+          "Reparations": "Meuf",
+          "DateReparation": "2023-07-28",
+          "Commentaires": "vas a scrap",
+          "id": "e83929d0-c6c5-4aae-ae09-be84e3d001fe",
+          "IdVoiture": "e83929d0-c6c5-4aae-ae09-be84e3d001fe",
+          "IdClient": "db74e001-050c-4710-96ac-fce9eb9bdfc1"
+        },
+        {
+          "Marque": "Dodge",
+          "Modele": "Ram",
+          "Annee": "2015",
+          "IdClient": "db74e001-050c-4710-96ac-fce9eb9bdfc1",
+          "IdVoiture": "55c97f0e-d3cf-4594-80b4-1084f7c1467c",
+          "id": "55c97f0e-d3cf-4594-80b4-1084f7c1467c"
+        },
+        {
+          "Marque": "Toyora",
+          "Modele": "Ram",
+          "Annee": "2008",
+          "Historique": "Bon états",
+          "IdClient": "db74e001-050c-4710-96ac-fce9eb9bdfc1",
+          "IdVoiture": "0dbc0d9a-8bd1-473e-99ec-f6ec797127e3",
+          "id": "0dbc0d9a-8bd1-473e-99ec-f6ec797127e3"
+        }
+      ],
+      "IdClient": "db74e001-050c-4710-96ac-fce9eb9bdfc1",
+      "id": "db74e001-050c-4710-96ac-fce9eb9bdfc1"
     }
   ]
 }

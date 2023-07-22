@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react';
-import { putClient, getClients } from '../service/api';
+import { putClient, getClients, postVoiture } from '../service/api';
 import { useHistory, useParams } from 'react-router-dom';
 import Client from '../models/client';
+import Voiture from '../models/voiture';
+import AjouterVoiture from './AjouterVoiture';
 
 function ModifierClient() {
-
-    const [client, setUser] = useState<Client>();
+    const [client, setClient] = useState<Client>();
     const {id}:any = useParams();
+
+    const [ajouterVoiture, setAjouterVoiture] = useState(false);
+    const [voiture, setVoiture] = useState<Voiture>();
+
+    var aguid = require('aguid');
 
     useEffect(() => {
         const loadUserData = async () =>{
             const response = await getClients(id);
-            setUser(response.data);
+            setClient(response.data);
         }
         loadUserData();
     },[]);
     
-    
     const onValueChange = (e:any) =>
     {
-        setUser({...client!, [e.target.name]: e.target.value});
+        setClient({...client!, [e.target.name]: e.target.value});
     }
     
     const history = useHistory();
@@ -28,10 +33,38 @@ function ModifierClient() {
        history.push('/all');
     }
 
+    const onValueChangeVoiture = (e:any) =>
+    {
+        setVoiture({...voiture!, [e.target.name]: e.target.value});
+    }
+    
+    const creerDetailsVoiture = async () =>{
+        var guid = aguid()
+        var ajoutVoiture:Voiture = {...voiture!}
+        ajoutVoiture.IdClient = client!.IdClient!
+        ajoutVoiture.IdVoiture = guid
+        ajoutVoiture.id = guid
+
+        var clientModifier:Client = {...client!}
+        clientModifier.Voitures = [...client?.Voitures!, ajoutVoiture!]
+
+        setClient({...client!, Voitures: [...client?.Voitures!, ajoutVoiture!]});
+        await putClient(id, clientModifier!);
+        fermerFormulaireVoiture()
+    }
+    
+    const ouvrirFormulaireVoiture = () =>{
+        setAjouterVoiture(true);
+    }
+
+    const fermerFormulaireVoiture = () => {
+        setAjouterVoiture(false);
+    }
+
     return (
         <div>
             <form>
-            <label>
+                <label>
                 Prenom:
                     <input type="text" onChange={(e) => onValueChange(e)} name="Prenom" value={client?.Prenom} />
                 </label>
@@ -48,6 +81,24 @@ function ModifierClient() {
                     <input type="text" onChange={(e) => onValueChange(e)} name="Telephone" value={client?.Telephone} />
                 </label>
             </form>
+
+            <div>
+                {console.log(client?.Voitures)}
+            </div>
+
+            <div>
+                <p>Ajouter une voiture</p>
+                <button onClick={() => ouvrirFormulaireVoiture()}>+</button>
+                {ajouterVoiture? 
+                    <AjouterVoiture 
+                        onValueChangeVoiture={onValueChangeVoiture} 
+                        creerDetailsVoiture={creerDetailsVoiture}
+                        fermerFormulaireVoiture={fermerFormulaireVoiture}
+                        voiture={voiture}/>
+                    : <></>}
+            </div>
+
+
             <button onClick={() => modifierUserDetails()}>Modifier</button>
             <button onClick={() => history.push("/all")}>Cancel</button>
         </div>

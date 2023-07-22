@@ -4,18 +4,21 @@ import Client from "../models/client";
 import { postClient } from '../service/api';
 
 function AjouterClient() {
-    const [client, setUser] = useState<Client>();
-    const history = useHistory();
+    const [client, setClient] = useState<Client>();
 
-    const onValueChange = (e:any) =>
+    const history = useHistory();
+    var aguid = require('aguid');
+
+    const onValueChangeClient = (e:any) =>
     {
-        setUser({...client!, [e.target.name]: e.target.value});
-        console.log(client);
+        setClient({...client!, [e.target.name]: e.target.value});
     }
 
     const creerDetailsClient = async () =>{
-       await postClient(client!);
-       history.push('/all');
+        var guid = aguid()
+        setClient({...client!, IdClient: guid, id: guid});
+        await postClient(client!);
+        history.push(`/modifier/${client!.IdClient}`);
     }
 
     return (
@@ -23,22 +26,22 @@ function AjouterClient() {
             <form>
                 <label>
                 Prenom:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Prenom" value={client?.Prenom} />
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Prenom" value={client?.Prenom} /><br/>
                 </label>
                 <label>
                 Nom:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Nom" value={client?.Nom} />
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Nom" value={client?.Nom} /><br/>
                 </label>
                 <label>
                 Courriel:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Courriel" value={client?.Courriel} />
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Courriel" value={client?.Courriel} /><br/>
                 </label>
                 <label>
                 Téléphone:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Telephone" value={client?.Telephone} />
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Telephone" value={client?.Telephone} /><br/>
                 </label>
             </form>
-            <button onClick={() => creerDetailsClient()}>Créer</button>
+            <button onClick={() => creerDetailsClient()}>Ajouter</button>
             <button onClick={() => history.push("/all")}>Cancel</button>
         </div>
     )

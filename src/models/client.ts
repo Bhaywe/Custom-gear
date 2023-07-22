@@ -2,7 +2,8 @@ import Appointment  from "./appointment";
 import Voiture from "./voiture";
 
 export default interface Client{
-    IdClient:string;
+    id: string
+    IdClient: string
     Nom?: string | undefined
     Prenom?: string | undefined
     Courriel?: string | undefined
