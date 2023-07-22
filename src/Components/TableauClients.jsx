@@ -34,15 +34,15 @@ const TableauClients = () => {
             </thead>
             <tbody>
             {
-                clients.map((client) => (
-                    <tr>
+                clients.map((client, i) => (
+                    <tr key={i}>
                         <td>{client.IdClient}</td>
                         <td>{client.Prenom}</td>
                         <td>{client.Nom}</td>
                         <td>{client.Courriel}</td>
                         <td>{client.Telephone}</td>
                         <td>
-                        <NavLink to={`/modifier/${client.IdClient}`}> Modifier</NavLink> <br/>
+                            <NavLink to={`/modifier/client/${client.IdClient}`}>Modifier</NavLink><br/>
                             <button onClick={() => deleteData(client.IdClient)}>Supprimer</button>
                         </td>
                     </tr>

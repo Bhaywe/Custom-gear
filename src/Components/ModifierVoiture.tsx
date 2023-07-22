@@ -1,13 +1,14 @@
-import Voiture from "../models/voiture";
+import { useHistory } from 'react-router-dom';
+import Voiture from '../models/voiture';
 
-interface IAjouterVoitureProps{
+interface IListeVoituresProps{
     onValueChangeVoiture: Function
-    creerDetailsVoiture: Function
-    fermerFormulaireVoiture: Function
+    modifierDetailsVoiture: Function
     voiture: Voiture | undefined | null
 }
 
-function AjouterVoiture(props: IAjouterVoitureProps) {
+function ModifierVoiture(props: IListeVoituresProps) {
+    const history = useHistory();
     return (
         <div>
             <form>
@@ -44,10 +45,11 @@ function AjouterVoiture(props: IAjouterVoitureProps) {
                     <input type="text" onChange={(e) => props.onValueChangeVoiture(e)} name="Appointments" value={"a venir"} /><br/>
                 </label>
             </form>
-            <button onClick={() => props.creerDetailsVoiture()}>Créer</button>
-            <button onClick={() => props.fermerFormulaireVoiture()}>Cancel</button>
+            <button onClick={() => props.modifierDetailsVoiture()}>Modifier</button>
+            <button onClick={() => history.push("/all")}>Cancel</button>
         </div>
     )
 }
 
-export default AjouterVoiture;
+
+export default ModifierVoiture;

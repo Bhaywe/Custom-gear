@@ -11,27 +11,28 @@ function ModifierClient() {
     const {id}:any = useParams();
 
     const [ajouterVoiture, setAjouterVoiture] = useState(false);
-    const [voiture, setVoiture] = useState<Voiture>();
+    const [voiture, setVoiture] = useState<Voiture | null>();
 
     var aguid = require('aguid');
 
+    const history = useHistory();
+
     useEffect(() => {
-        const loadUserData = async () =>{
+        const obtenirClient = async () =>{
             const response = await getClients(id);
             setClient(response.data);
         }
-        loadUserData();
+        obtenirClient();
     },[]);
-    
+
+    const modifierUserDetails = async () =>{
+        await putClient(client!.IdClient, client!);
+        history.push('/all');
+    }
+
     const onValueChange = (e:any) =>
     {
         setClient({...client!, [e.target.name]: e.target.value});
-    }
-    
-    const history = useHistory();
-    const modifierUserDetails = async () =>{
-       await putClient(client!.IdClient, client!);
-       history.push('/all');
     }
 
     const onValueChangeVoiture = (e:any) =>
@@ -40,19 +41,50 @@ function ModifierClient() {
     }
     
     const creerDetailsVoiture = async () =>{
-        var guid = aguid()
-        var ajoutVoiture:Voiture = {...voiture!}
-        ajoutVoiture.IdClient = client!.IdClient!
-        ajoutVoiture.IdVoiture = guid
-        ajoutVoiture.id = guid
-
+        var voiture:Voiture = creerVoiture()
         var clientModifier:Client = {...client!}
-        clientModifier.Voitures = [...client?.Voitures!, ajoutVoiture!]
+        clientModifier.Voitures = [...client?.Voitures!, voiture!]
 
-        setClient({...client!, Voitures: [...client?.Voitures!, ajoutVoiture!]});
+        setClient({...client!, Voitures: [...client?.Voitures!, voiture!]});
+        await putClient(id, clientModifier!);
+        fermerFormulaireVoiture()
+        setVoiture(null);
+    }
+
+    const creerVoiture = () =>{
+        var guid = aguid()
+        var voiture:Voiture = {...voiture!}
+        voiture.IdClient = client!.IdClient!
+        voiture.IdVoiture = guid
+        voiture.id = guid
+        return voiture
+    }
+
+    const modifierDetailsVoiture = async () =>{
+        var voituresAJour:Array<Voiture> = miseAJourVoiture(client)
+        var clientModifier: Client = {...client!}
+        clientModifier.Voitures = voituresAJour
+
+        setClient(clientModifier);
         await putClient(id, clientModifier!);
         fermerFormulaireVoiture()
     }
+
+    const miseAJourVoiture = (client: Client | undefined) =>{
+        var voitureUpdate:Voiture = {...voiture!}
+        var client: Client | undefined = {...client!}
+        var voitureIndex:number = client?.Voitures!.findIndex(x => x.IdVoiture === voitureUpdate.IdVoiture);
+        var copyListeVoitures: Array<Voiture> = {...client?.Voitures!}
+        copyListeVoitures[voitureIndex] = voitureUpdate
+        return copyListeVoitures
+    }
+
+    const supprimerDetailsVoiture = async (idVoiture: string) => {
+        const listeVoiture = client?.Voitures!.filter((item) => item.IdVoiture !== idVoiture);
+        setClient({...client!, Voitures: listeVoiture});
+        await putClient(id, client!);
+        setVoiture(null);
+      }
     
     const ouvrirFormulaireVoiture = () =>{
         setAjouterVoiture(true);
@@ -85,7 +117,7 @@ function ModifierClient() {
 
             <div>
                 <p>Voitures</p>
-                <ListeVoitures voitures={client?.Voitures!}/>
+                <ListeVoitures voiture={voiture} client={client!} setVoiture={setVoiture} supprimerDetailsVoiture={supprimerDetailsVoiture} modifierDetailsVoiture={modifierDetailsVoiture} onValueChangeVoiture={onValueChangeVoiture}/>
             </div>
 
             <div>
@@ -100,8 +132,6 @@ function ModifierClient() {
                         voiture={voiture}/>
                     : <></>}
             </div>
-
-
             <button onClick={() => modifierUserDetails()}>Modifier</button>
             <button onClick={() => history.push("/all")}>Cancel</button>
         </div>

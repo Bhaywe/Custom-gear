@@ -15,7 +15,7 @@ function AjouterClient() {
 
     const creerDetailsClient = async () =>{
         await postClient(client!);
-        history.push(`/modifier/${client!.IdClient}`);
+        history.push(`/modifier/client/${client!.IdClient}`);
     }
 
     return (
@@ -23,19 +23,19 @@ function AjouterClient() {
             <form>
                 <label>
                 Prenom:
-                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Prenom" value={client?.Prenom} /><br/>
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Prenom" value={client?.Prenom || ""} /><br/>
                 </label>
                 <label>
                 Nom:
-                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Nom" value={client?.Nom} /><br/>
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Nom" value={client?.Nom || ""} /><br/>
                 </label>
                 <label>
                 Courriel:
-                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Courriel" value={client?.Courriel} /><br/>
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Courriel" value={client?.Courriel || ""} /><br/>
                 </label>
                 <label>
                 Téléphone:
-                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Telephone" value={client?.Telephone} /><br/>
+                    <input type="text" onChange={(e) => onValueChangeClient(e)} name="Telephone" value={client?.Telephone || ""} /><br/>
                 </label>
             </form>
             <button onClick={() => creerDetailsClient()}>Ajouter</button>
