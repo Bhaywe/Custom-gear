@@ -3,7 +3,6 @@ import Client from '../models/client';
 import('../models/client')
 
 const urlClient = "http://127.0.0.1:3003/clients";
-const urlVoiture = "http://127.0.0.1:3003/voitures";
 var aguid = require('aguid');
 
 //#region client
@@ -25,25 +24,5 @@ export const putClient = async (id: string, user: Client) => {
 
 export const deleteClient = async (id: string) => {
     return await axios.delete(`${urlClient}/${id}`);
-}
-//#endregion
-
-//#region voiture
-export const postVoiture= async (voiture: any, idClient: string) => {
-    var guid = aguid()
-    voiture.id = guid
-    voiture.IdVoiture = guid
-
-    voiture.IdClient = idClient
-    return await axios.post(urlVoiture, voiture);
-}
-
-export const getVoituresClient= async (voiture: any, idClient: string) => {
-    var guid = aguid()
-    voiture.id = guid
-    voiture.IdVoiture = guid
-
-    voiture.IdClient = idClient
-    return await axios.get(urlVoiture, voiture);
 }
 //#endregion

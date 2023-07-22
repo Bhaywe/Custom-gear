@@ -7,7 +7,6 @@ function AjouterClient() {
     const [client, setClient] = useState<Client>();
 
     const history = useHistory();
-    var aguid = require('aguid');
 
     const onValueChangeClient = (e:any) =>
     {
@@ -15,8 +14,6 @@ function AjouterClient() {
     }
 
     const creerDetailsClient = async () =>{
-        var guid = aguid()
-        setClient({...client!, IdClient: guid, id: guid});
         await postClient(client!);
         history.push(`/modifier/${client!.IdClient}`);
     }

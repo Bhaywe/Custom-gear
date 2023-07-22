@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { putClient, getClients, postVoiture } from '../service/api';
+import { putClient, getClients } from '../service/api';
 import { useHistory, useParams } from 'react-router-dom';
 import Client from '../models/client';
 import Voiture from '../models/voiture';
 import AjouterVoiture from './AjouterVoiture';
+import ListeVoitures from './ListeVoitures';
 
 function ModifierClient() {
     const [client, setClient] = useState<Client>();
@@ -66,27 +67,29 @@ function ModifierClient() {
             <form>
                 <label>
                 Prenom:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Prenom" value={client?.Prenom} />
+                    <input type="text" onChange={(e) => onValueChange(e)} name="Prenom" value={client?.Prenom || ""} />
                 </label>
                 <label>
                 Nom:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Nom" value={client?.Nom} />
+                    <input type="text" onChange={(e) => onValueChange(e)} name="Nom" value={client?.Nom || ""} />
                 </label>
                 <label>
                 Courriel:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Courriel" value={client?.Courriel} />
+                    <input type="text" onChange={(e) => onValueChange(e)} name="Courriel" value={client?.Courriel || ""} />
                 </label>
                 <label>
                 Téléphone:
-                    <input type="text" onChange={(e) => onValueChange(e)} name="Telephone" value={client?.Telephone} />
+                    <input type="text" onChange={(e) => onValueChange(e)} name="Telephone" value={client?.Telephone || ""} />
                 </label>
             </form>
 
             <div>
-                {console.log(client?.Voitures)}
+                <p>Voitures</p>
+                <ListeVoitures voitures={client?.Voitures!}/>
             </div>
 
             <div>
+                {/* Transformer en modale */}
                 <p>Ajouter une voiture</p>
                 <button onClick={() => ouvrirFormulaireVoiture()}>+</button>
                 {ajouterVoiture? 
