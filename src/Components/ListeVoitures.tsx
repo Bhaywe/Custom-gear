@@ -5,12 +5,13 @@ import ModifierVoiture from './ModifierVoiture';
 import Voiture from '../models/voiture';
 
 interface IListeVoituresProps{
+    client: Client
+    voiture: Voiture | undefined | null
+    setModifierVoiture: Function
     supprimerDetailsVoiture: Function
     modifierDetailsVoiture: Function
-    onValueChangeVoiture: Function
-    voiture: Voiture | undefined | null
-    client: Client
-    setVoiture: Function
+    fermerFormulaireVoiture: Function
+    onValueChangeModifierVoiture: Function
 }
 
 function ListeVoitures(props: IListeVoituresProps) {
@@ -18,7 +19,7 @@ function ListeVoitures(props: IListeVoituresProps) {
  
     const ouvrirFormulaireModifierVoiture = (idVoiture: string) =>{
         var voiture = obtenirVoiture(idVoiture);
-        props.setVoiture(voiture);
+        props.setModifierVoiture(voiture);
         setOuvrirModifierVoiture(true)
     }
 
@@ -31,7 +32,7 @@ function ListeVoitures(props: IListeVoituresProps) {
     return (
         <div>
              { ouvrirModifierVoiture? 
-             <ModifierVoiture voiture={props.voiture} modifierDetailsVoiture={props.modifierDetailsVoiture} onValueChangeVoiture={props.onValueChangeVoiture}/>
+             <ModifierVoiture voiture={props.voiture} setOuvrirModifierVoiture={setOuvrirModifierVoiture} modifierDetailsVoiture={props.modifierDetailsVoiture} onValueChangeModifierVoiture={props.onValueChangeModifierVoiture}/>
                 :
                 props.client?.Voitures?.map((voiture, i) => (
                     <div key={i}>
