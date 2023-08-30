@@ -9,7 +9,7 @@ export default interface Voiture{
     Annee?: string
     Historique?: string
     Reparations?: string
-    DateReparation?: Date | undefined
+    DateReparation?: Date | null
     Commentaires?: string
-    Appointments?: Array<Appointment>
+    Appointments?: Array<Appointment> | null
 }

@@ -32,6 +32,29 @@
       ],
       "IdClient": "db74e001-050c-4710-96ac-fce9eb9bdfc1",
       "id": "db74e001-050c-4710-96ac-fce9eb9bdfc1"
+    },
+    {
+      "Prenom": "Biankagfdgdfg",
+      "Nom": "Halle",
+      "Courriel": "biankahale@gmail.com",
+      "Telephone": "4189281598",
+      "IdClient": "88da2d3b-cfda-4087-8202-efba96b73857",
+      "id": "88da2d3b-cfda-4087-8202-efba96b73857",
+      "Voitures": [
+        {
+          "id": "80984a92-d4f2-455f-894d-5c36eb7a3a63",
+          "IdVoiture": "80984a92-d4f2-455f-894d-5c36eb7a3a63",
+          "IdClient": "88da2d3b-cfda-4087-8202-efba96b73857",
+          "Modele": "Ram",
+          "Marque": "Toyora",
+          "Annee": "2015",
+          "Historique": "Bon états",
+          "Reparations": "Meuf",
+          "DateReparation": "2023-08-25",
+          "Commentaires": "vas a scrap",
+          "Appointments": []
+        }
+      ]
     }
   ]
 }
